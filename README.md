@@ -12,7 +12,7 @@ $ flask student create <username> <password>
 $ flask employer create <username> <password>
 ```
 
-## Create Student, Staff, Employer
+## List Student, Staff, Employer
 ```bash
 $ flask staff list
 
