@@ -110,6 +110,31 @@ class UsersIntegrationTests(unittest.TestCase):
         assert isinstance(positions, list)
         assert any(p['internship_id'] == internship.id for p in positions)
 
+    #Accept and Reject a Student from the shortlist
+    def test_accept_student_from_shortlist(self):
+        emp = create_employer("employer_accept", "pass", "Company3")
+        internship = create_internship("Accept.Co", "accept i guess", emp.id)
+        student = create_student("student_accept", "pass")
+        shortlist = add_student_to_shortlist(student.id, internship.id)
+        assert shortlist is not None
+        check = accept_student_from_shortlist(shortlist.id)
+        assert check is True
+        refreshed = get_internship(internship.id)
+        assert refreshed.status == 'accepted'
+
+    def test_reject_student_from_shortlist(self):
+        emp = create_employer("employer_reject", "pass", "Company4")
+        internship = create_internship("Reject.Co", "reject i guess", emp.id)
+        student = create_student("student_reject", "pass")
+        shortlist = add_student_to_shortlist(student.id, internship.id)
+        assert shortlist is not None
+        check = reject_student_from_shortlist(shortlist.id)
+        assert check is True
+        refreshed = get_internship(internship.id)
+        assert refreshed.status == 'rejected'
+
+
+
 
 
 
