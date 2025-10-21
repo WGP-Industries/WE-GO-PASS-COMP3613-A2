@@ -98,5 +98,19 @@ class UsersIntegrationTests(unittest.TestCase):
         assert internship is not None
         assert internship.title == "Internship1"
 
+    # Add student to a shortlist
+    def test_add_student_to_shortlist_and_get_positions(self):
+        internship_owner = create_employer("employer2", "employerpass", "Company2")
+        internship = create_internship("Test Intern 2", "Test i guess", internship_owner.id)
+        staff = create_staff("Staff2", "staffpass")
+        student = create_student("short_student_a", "studentpass")
+        shortlist = add_student_to_shortlist(student.id, internship.id)
+        assert shortlist is not None
+        positions = get_student_shortlisted_positions(student.id)
+        assert isinstance(positions, list)
+        assert any(p['internship_id'] == internship.id for p in positions)
+
+
+
 
 
