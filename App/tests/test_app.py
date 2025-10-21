@@ -79,7 +79,7 @@ class UsersIntegrationTests(unittest.TestCase):
 
     # Test creating users
     def test_create_staff(self):
-        student = create_staff("staff1", "staff1pass")
+        staff = create_staff("staff1", "staff1pass")
         assert staff.username == "staff1"
 
     def test_create_student(self):
@@ -87,8 +87,16 @@ class UsersIntegrationTests(unittest.TestCase):
         assert student.username == "student1"
 
     def test_create_employer(self):
-        student = create_student("employer1", "employer1pass")
+        employer = create_student("employer1", "employer1pass")
         assert employer.username == "employer1"
-        
+
+    # Internship testing
+    def test_create_internship(self):
+        employer = create_employer("employer1", "pass", "Company1")
+        assert employer.username == "employer1"
+        internship = create_internship("Internship1", "Test i guess", employer.id)
+        assert internship is not None
+        assert internship.title == "Internship1"
+
 
 
