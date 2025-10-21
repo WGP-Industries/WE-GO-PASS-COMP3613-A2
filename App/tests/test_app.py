@@ -75,5 +75,20 @@ class UsersIntegrationTests(unittest.TestCase):
         update_user(1, "ronnie")
         user = get_user(1)
         assert user.username == "ronnie"
+
+
+    # Test creating users
+    def test_create_staff(self):
+        student = create_staff("staff1", "staff1pass")
+        assert staff.username == "staff1"
+
+    def test_create_student(self):
+        student = create_student("student1", "student1pass")
+        assert student.username == "student1"
+
+    def test_create_employer(self):
+        student = create_student("employer1", "employer1pass")
+        assert employer.username == "employer1"
         
+
 
