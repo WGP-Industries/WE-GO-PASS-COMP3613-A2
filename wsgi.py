@@ -9,7 +9,8 @@ from App.controllers import ( create_user, get_all_users_json, get_all_users, in
                              create_student, get_all_student,
                              create_employer, get_all_employer,
                              create_internship, get_all_internship,
-                             get_student_shortlisted_positions, add_student_to_shortlist, reject_student_from_shortlist, accept_student_from_shortlist) 
+                             get_student_shortlisted_positions, add_student_to_shortlist, reject_student_from_shortlist, accept_student_from_shortlist,
+                             list_shortlisted_students) 
 
 
 # This commands file allow you to create convenient CLI commands for testing controllers
@@ -151,7 +152,18 @@ app.cli.add_command(internship_cli) # add the group to the cli
 Shortlist Commands
 '''
 
-shortlist_cli = AppGroup('shortlist', help='shortlist object commands') 
+shortlist_cli = AppGroup('shortlist', help='shortlist object commands')
+
+@shortlist_cli.command("students", help="View students shortlisted for an internship")
+@click.argument("internship_id", type=int)
+def view_shortlisted_students(internship_id):
+    results = list_shortlisted_students(internship_id)
+    if not results:
+        print(f"No students shortlisted for internship {internship_id}.")
+    else:
+        for r in results:
+            print(f"Student ID: {r['id']}, Username: {r['username']}, Name: {r['name']}")
+
 
 @shortlist_cli.command("view", help="View shortlisted positions and employer responses for a student")
 @click.argument("student_id", type=int)
@@ -209,5 +221,6 @@ def user_tests_command(type):
     else:
         sys.exit(pytest.main(["-k", "App"]))
     
+
 
 app.cli.add_command(test)
