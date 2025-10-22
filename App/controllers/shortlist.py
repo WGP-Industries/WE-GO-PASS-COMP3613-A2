@@ -1,4 +1,4 @@
-from App.models import Shortlist, Internship
+from App.models import Shortlist, Internship, Student
 from App.database import db
 
 def get_student_shortlisted_positions(student_id):
@@ -47,3 +47,18 @@ def reject_student_from_shortlist(shortlist_id):
     internship.reject()
     db.session.commit()
     return True
+
+
+
+def list_shortlisted_students(internship_id):
+    shortlists = Shortlist.query.filter_by(internship_id=internship_id).all()
+    results = []
+    for s in shortlists:
+        student = Student.query.get(s.student_id)
+        if student:
+            results.append({
+                "id": student.id,
+                "username": student.username,
+                "name": getattr(student, 'name', None)
+            })
+    return results
