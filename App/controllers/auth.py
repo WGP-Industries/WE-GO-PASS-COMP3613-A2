@@ -1,15 +1,27 @@
 from flask_jwt_extended import create_access_token, jwt_required, JWTManager, get_jwt_identity, verify_jwt_in_request
 
-from App.models import User
+from App.models import User, Student, Employer, Staff
 from App.database import db
 
-def login(username, password):
-  result = db.session.execute(db.select(User).filter_by(username=username))
-  user = result.scalar_one_or_none()
-  if user and user.check_password(password):
-    # Store ONLY the user id as a string in JWT 'sub'
-    return create_access_token(identity=str(user.id))
-  return None
+# Login function for all user types cause we need it, I am not redoing models for each type
+def login(username, password, user_type):
+    try:
+        model_map = {
+            'student': Student,
+            'employer': Employer,
+            'staff': Staff
+        }
+        model = model_map.get(user_type)
+        if not model:
+            return None
+        
+        user = db.session.execute(db.select(model).filter_by(username=username)).scalar_one_or_none()
+        if user and user.check_password(password):
+            return create_access_token(identity={"id": str(user.id), "type": user_type})
+        return None
+    except Exception as e:
+        print("Login error:", e)
+        return None
 
 
 def setup_jwt(app):

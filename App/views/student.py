@@ -6,12 +6,26 @@ from App.controllers import (
     get_all_student,
     get_student,
     get_staff,
-    get_student_by_username,
+    get_student_by_username, login
 )
 
 student_views = Blueprint('student_views', __name__, template_folder='../templates')
 
 
+
+
+
+# Login route for students
+@student_views.route('/students/login', methods=['POST'])
+def student_login():
+    data = request.json
+    if not data or 'username' not in data or 'password' not in data:
+        return jsonify({'error': 'Missing username or password'}), 400
+
+    token = login(data['username'], data['password'], user_type='student')
+    if token:
+        return jsonify({'access_token': token}), 200
+    return jsonify({'error': 'Invalid credentials'}), 401
 
 
 # GET all students

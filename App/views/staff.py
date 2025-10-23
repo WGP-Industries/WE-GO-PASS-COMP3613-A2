@@ -4,7 +4,7 @@ from App.controllers import (
     create_staff,
     get_all_staff,
     get_staff,
-    get_staff_by_username,
+    get_staff_by_username, login
 )
 
 staff_views = Blueprint('staff_views', __name__, template_folder='../templates')
@@ -12,6 +12,18 @@ staff_views = Blueprint('staff_views', __name__, template_folder='../templates')
 
 # API Routes 
 
+
+# login route for staff
+@staff_views.route('/staff/login', methods=['POST'])
+def staff_login():
+    data = request.json
+    if not data or 'username' not in data or 'password' not in data:
+        return jsonify({'error': 'Missing username or password'}), 400
+
+    token = login(data['username'], data['password'], user_type='staff')
+    if token:
+        return jsonify({'access_token': token}), 200
+    return jsonify({'error': 'Invalid credentials'}), 401
 
 # GET all staff
 

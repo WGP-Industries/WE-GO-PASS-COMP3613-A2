@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from App.controllers import (
     create_employer,
-    get_all_employer, get_employer, get_employer_by_username
+    get_all_employer, get_employer, get_employer_by_username, login
 )
 
 employer_views = Blueprint('employer_views', __name__, template_folder='../templates')
@@ -10,8 +10,20 @@ employer_views = Blueprint('employer_views', __name__, template_folder='../templ
 
 # API Routes 
 
-# Get all employers
 
+# Login employer
+@employer_views.route('/employers/login', methods=['POST'])
+def employer_login():
+    data = request.json
+    if not data or 'username' not in data or 'password' not in data:
+        return jsonify({'error': 'Missing username or password'}), 400
+
+    token = login(data['username'], data['password'], user_type='employer')
+    if token:
+        return jsonify({'access_token': token}), 200
+    return jsonify({'error': 'Invalid credentials'}), 401
+
+# Get all employers
 
 
 @employer_views.route('/employers', methods=['GET'])
