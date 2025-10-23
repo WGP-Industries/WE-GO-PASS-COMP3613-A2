@@ -15,6 +15,10 @@ def create_staff(username, password):
 def get_staff(id):
     return Staff.query.get(id)
 
+def get_staff_by_username(username):
+    result = db.session.execute(db.select(Staff).filter_by(username=username))
+    return result.scalar_one_or_none()
+
 def is_staff(id):
     return Staff.query.get(id) != None
 

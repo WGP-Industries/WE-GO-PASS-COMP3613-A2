@@ -3,7 +3,8 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from App.controllers import (
     create_staff,
     get_all_staff,
-    get_staff
+    get_staff,
+    get_staff_by_username,
 )
 
 staff_views = Blueprint('staff_views', __name__, template_folder='../templates')
@@ -15,6 +16,7 @@ staff_views = Blueprint('staff_views', __name__, template_folder='../templates')
 # GET all staff
 
 @staff_views.route('/staff', methods=['GET'])
+@jwt_required()
 def get_staff_action():
  
     user = get_staff(get_jwt_identity()) 
@@ -25,7 +27,6 @@ def get_staff_action():
     return jsonify([{
         'id': s.id,
         'username': s.username,
-        'name': s.name
     } for s in staff]), 200
 
 
@@ -36,12 +37,19 @@ def create_staff_action():
   
 
     data = request.get_json()
+    
+    existing_staff = get_staff_by_username(data['username'])
+
+    if existing_staff:
+        return jsonify({'error': 'Username already exists'}), 400
+
+
     if not data or 'username' not in data or 'password' not in data:
         return jsonify({'error': 'Missing required fields'}), 400
 
     staff = create_staff(username=data['username'], password=data['password'])
     if staff:
-        return jsonify({'message': f"Staff {staff.username} created with id {staff.id}"}), 201
+        return jsonify({'message': f"Staff created with id: {staff.id}, username: {staff.username}"}), 201
     return jsonify({'error': 'Could not create staff'}), 400
 
 

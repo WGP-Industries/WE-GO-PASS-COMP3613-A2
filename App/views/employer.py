@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from App.controllers import (
     create_employer,
-    get_all_employer, get_employer
+    get_all_employer, get_employer, get_employer_by_username
 )
 
 employer_views = Blueprint('employer_views', __name__, template_folder='../templates')
@@ -25,9 +25,19 @@ def get_employers_json():
 @employer_views.route('/employers', methods=['POST'])
 def create_employer_api():
     data = request.json
+    
+    existing_employer = get_employer_by_username(data['username'])
+
+    if existing_employer:
+        return jsonify({'error': 'Username already exists'}), 400
+
+    if not data or 'username' not in data or 'password' not in data:
+        return jsonify({'error': 'Missing required fields'}), 400
+
     employer = create_employer(data['username'], data['password'], data.get('company'))
     if employer:
-        return jsonify({'message': f"Employer {employer.username} created with id {employer.id}"})
+        return jsonify({'message': f"Employer {employer.username} created with id {employer.id}"}), 201
+    
     return jsonify({'error': 'Could not create employer'}), 400
 
 
