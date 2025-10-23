@@ -12,13 +12,28 @@ staff_views = Blueprint('staff_views', __name__, template_folder='../templates')
 # API Routes 
 
 
+# GET all staff
+
+@staff_views.route('/staff', methods=['GET'])
+def get_staff_action():
+ 
+    user = get_staff(get_jwt_identity()) 
+    if not user:
+        return jsonify({'error': 'Unauthorized access'}), 403
+
+    staff = get_all_staff()
+    return jsonify([{
+        'id': s.id,
+        'username': s.username,
+        'name': s.name
+    } for s in staff]), 200
+
+
+
+
 @staff_views.route('/staff', methods=['POST'])
-@jwt_required()
 def create_staff_action():
   
-    staff_user = get_staff(get_jwt_identity())
-    if not staff_user:
-        return jsonify({'error': 'User not authorized to perform this action'}), 403
 
     data = request.get_json()
     if not data or 'username' not in data or 'password' not in data:

@@ -14,12 +14,7 @@ student_views = Blueprint('student_views', __name__, template_folder='../templat
 # GET all students
 
 @student_views.route('/students', methods=['GET'])
-@jwt_required()
 def get_students_action():
- 
-    user = get_staff(get_jwt_identity())
-    if not user:
-        return jsonify({'error': 'Unauthorized access'}), 403
 
     students = get_all_student()
     return jsonify([{
@@ -33,12 +28,8 @@ def get_students_action():
 # CREATE a new student
 
 @student_views.route('/students', methods=['POST'])
-@jwt_required()
 def create_student_action():
   
-    staff = get_staff(get_jwt_identity())
-    if not staff:
-        return jsonify({'error': 'User not authorized to perform this action'}), 403
 
     data = request.get_json()
     if not data or 'username' not in data or 'password' not in data:
@@ -63,12 +54,8 @@ def create_student_action():
 # GET a single student by ID
 
 @student_views.route('/students/<int:student_id>', methods=['GET'])
-@jwt_required()
 def get_student_action(student_id):
-    staff = get_staff(get_jwt_identity())
-    if not staff:
-        return jsonify({'error': 'Unauthorized access'}), 403
-
+    
     student = get_student(student_id)
     if not student:
         return jsonify({'error': 'Student not found'}), 404
