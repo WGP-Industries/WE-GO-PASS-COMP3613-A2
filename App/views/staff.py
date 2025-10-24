@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import get_jwt, jwt_required, get_jwt_identity, set_access_cookies
 from App.controllers import (
     create_staff,
     get_all_staff,
@@ -22,17 +22,25 @@ def staff_login():
 
     token = login(data['username'], data['password'], user_type='staff')
     if token:
-        return jsonify({'access_token': token}), 200
-    return jsonify({'error': 'Invalid credentials'}), 401
+        response = jsonify({'access_token': token})
+        set_access_cookies(response, token)
+        return response, 200   
+    else:
+        return jsonify({'error': 'Invalid credentials'}), 401
 
 # GET all staff
 
 @staff_views.route('/staff', methods=['GET'])
 @jwt_required()
 def get_staff_action():
- 
-    user = get_staff(get_jwt_identity()) 
-    if not user:
+    
+    model_type = get_jwt()
+
+    if model_type['type'] != 'staff':
+        return jsonify({'error': 'Unauthorized access'}), 403   
+    
+    existing_staff =  get_staff(get_jwt_identity())
+    if not existing_staff:
         return jsonify({'error': 'Unauthorized access'}), 403
 
     staff = get_all_staff()
@@ -70,9 +78,10 @@ def create_staff_action():
 @jwt_required()
 def get_single_staff(staff_id):
  
-    staff_user = get_staff(get_jwt_identity())
-    if not staff_user:
-        return jsonify({'error': 'Unauthorized access'}), 403
+    model_type = get_jwt()
+
+    if model_type['type'] != 'staff':
+        return jsonify({'error': 'Unauthorized access'}), 403  
 
     staff = get_staff(staff_id)
     if not staff:

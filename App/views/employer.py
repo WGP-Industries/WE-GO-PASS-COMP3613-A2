@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
+from flask_jwt_extended import set_access_cookies
 from App.controllers import (
     create_employer,
     get_all_employer, get_employer, get_employer_by_username, login
@@ -20,7 +21,9 @@ def employer_login():
 
     token = login(data['username'], data['password'], user_type='employer')
     if token:
-        return jsonify({'access_token': token}), 200
+        response = jsonify({'access_token': token})
+        set_access_cookies(response, token)
+        return response, 200   
     return jsonify({'error': 'Invalid credentials'}), 401
 
 # Get all employers

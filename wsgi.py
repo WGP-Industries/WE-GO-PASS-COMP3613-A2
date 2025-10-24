@@ -173,13 +173,14 @@ def view_shortlisted_positions(student_id):
         print(f"No shortlisted positions found for student {student_id}.")
     else:
         for r in results:
-            print(f"Internship ID: {r['internship_id']}, Title: {r['title']}, Status: {r['status']}")
+            print(f"Internship ID: {r['internship_id']}, Title: {r['title']}, Status: {r['status']}, Employer ID: {r['employer_id']}")
 
 @shortlist_cli.command("add", help="Add a student to an internship's shortlist")
 @click.argument("student_id", type=int)
 @click.argument("internship_id", type=int)
-def add_student_shortlist(student_id, internship_id):
-    result = add_student_to_shortlist(student_id, internship_id)
+@click.argument("employer_id", type=int)
+def add_student_shortlist(student_id, internship_id, employer_id):
+    result = add_student_to_shortlist(student_id, internship_id, employer_id)
     if result:
         print(f"Student {student_id} added to internship {internship_id} shortlist.")
     else:

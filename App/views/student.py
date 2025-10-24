@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import get_jwt, jwt_required, get_jwt_identity, set_access_cookies
 
 from App.controllers import (
     create_student,
@@ -24,7 +24,9 @@ def student_login():
 
     token = login(data['username'], data['password'], user_type='student')
     if token:
-        return jsonify({'access_token': token}), 200
+        response = jsonify({'access_token': token})
+        set_access_cookies(response, token)
+        return response, 200   
     return jsonify({'error': 'Invalid credentials'}), 401
 
 
@@ -33,11 +35,10 @@ def student_login():
 @student_views.route('/students', methods=['GET'])
 @jwt_required()
 def get_students_action():
-    staff = get_staff(get_jwt_identity()) 
-    student = get_student(get_jwt_identity())
+    model_type = get_jwt()
 
-    if not staff and not student:
-        return jsonify({'error': 'Unauthorized access'}), 403
+    if model_type['type'] != 'staff' and model_type['type'] != 'employer':
+        return jsonify({'error': 'Unauthorized access'}), 403  
 
     students = get_all_student()
     return jsonify([{
@@ -81,7 +82,12 @@ def create_student_action():
 # GET a single student by ID
 
 @student_views.route('/students/<int:student_id>', methods=['GET'])
+@jwt_required()
 def get_student_action(student_id):
+    model_type = get_jwt()
+
+    if model_type['type'] != 'staff' and model_type['type'] != 'employer':
+        return jsonify({'error': 'Unauthorized access'}), 403  
     
     student = get_student(student_id)
     if not student:

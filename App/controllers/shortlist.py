@@ -11,13 +11,28 @@ def get_student_shortlisted_positions(student_id):
                 "internship_id": internship.id,
                 "title": internship.title,
                 "description": internship.description,
-                "status": internship.status  
+                "status": internship.status,
+                "employer_id": internship.employer_id,
+                "id": shortlist.id
             })
     return results
 
+def get_all_shortlists():
+    return Shortlist.query.all()
 
-def add_student_to_shortlist(student_id, internship_id):
-    new_shortlist = Shortlist(student_id=student_id, internship_id=internship_id)
+def get_shortlist(shortlist_id):
+    return Shortlist.query.get(shortlist_id)
+
+
+def add_student_to_shortlist(student_id, internship_id, employer_id):
+    new_shortlist = Shortlist(student_id=student_id, internship_id=internship_id, employer_id=employer_id)
+
+    ShortlistExists = db.session.execute(
+        db.select(Shortlist).filter_by(student_id=student_id, internship_id=internship_id, employer_id=employer_id)
+    ).scalar_one_or_none()
+
+    if ShortlistExists:
+        return None  # Student already shortlisted for this internship
     try:
         db.session.add(new_shortlist)
         db.session.commit()
@@ -57,8 +72,10 @@ def list_shortlisted_students(internship_id):
         student = Student.query.get(s.student_id)
         if student:
             results.append({
-                "id": student.id,
+                "id": s.id,
                 "username": student.username,
-                "name": getattr(student, 'name', None)
+                "name": getattr(student, 'name', None),
+                "employer_id": s.employer_id,
+                "student_id": s.student_id,
             })
     return results

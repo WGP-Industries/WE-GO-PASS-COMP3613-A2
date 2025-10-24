@@ -50,7 +50,7 @@ API Routes
 @auth_views.route('/api/login', methods=['POST'])
 def user_login_api():
   data = request.json
-  token = login(data['username'], data['password'])
+  token = login(data['username'], data['password'], user_type='student')
   if not token:
     return jsonify(message='bad username or password given'), 401
   response = jsonify(access_token=token) 

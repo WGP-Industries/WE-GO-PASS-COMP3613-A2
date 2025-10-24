@@ -2,7 +2,15 @@ from App.models import Internship
 from App.database import db
 
 def create_internship(title, description, employer_id):
+
+
     new_internship = Internship(title=title, description=description, employer_id=employer_id)
+
+    InternshipExists = db.session.execute(
+        db.select(Internship).filter_by(title=title, employer_id=employer_id)
+    ).scalar_one_or_none()
+    if InternshipExists:
+        return None  # Internship with same title for this employer already exists
     try:
         db.session.add(new_internship)
         db.session.commit()
