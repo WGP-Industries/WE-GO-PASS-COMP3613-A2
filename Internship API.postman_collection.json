@@ -1,0 +1,2813 @@
+{
+	"info": {
+		"_postman_id": "9c08a4ad-fef5-4d64-8260-03cdc6c7c165",
+		"name": "Internship API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34191880",
+		"_collection_link": "https://www.postman.com/technical-engineer-81663749/workspace/internship-api-workspace/collection/34191880-9c08a4ad-fef5-4d64-8260-03cdc6c7c165?action=share&source=collection_link&creator=34191880"
+	},
+	"item": [
+		{
+			"name": "Home",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"\tpm.response.to.not.be.error;\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}",
+					"host": [
+						"{{host}}"
+					]
+				},
+				"description": "Returns a simple response from the API root endpoint. Useful for health checks or verifying that the API server is running and accessible."
+			},
+			"response": []
+		},
+		{
+			"name": "Create Student Success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Student created test\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData['message'].includes(\"created successfully\")).to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"gabby\",\r\n\t\"password\": \"robpass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/students",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"students"
+					]
+				},
+				"description": "Creates a new student"
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Student Failure",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return an error (400 or 403)\", function () {\r",
+							"    pm.expect([400, 403]).to.include(pm.response.code);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"rick\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/students",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"students"
+					]
+				},
+				"description": "**Purpose:**\nCreates a new student account in the system.\n\n**Endpoint:**\nPOST /students\n\n**Request Body:**\n- Content-Type: application/json\n- Example:\n  ```json\n  {\n    \"username\": \"rick\"\n  }\n  ```\n- **username** (string, required): The desired username for the new student.\n\n**Possible Responses:**\n- **201 Created:** Student account successfully created. Returns details of the new student.\n- **400 Bad Request:** The request body is invalid or missing required fields.\n- **403 Forbidden:** The operation is not allowed (e.g., username already exists or insufficient permissions).\n\n**Error Handling:**\nIf the request fails due to invalid input or forbidden action, an error response with status code 400 or 403 will be returned, along with an error message describing the issue."
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Employer Success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.expect([200, 201, 400, 403]).to.include(pm.response.code);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Employer created test\", function () {\r",
+							"    if (pm.response.code === 201) {\r",
+							"        let jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData['message'].includes(\"created with id\")).to.be.true;\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"rick5\",\r\n\t\"password\": \"robpass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/employers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"employers"
+					]
+				},
+				"description": "### Create Employer\n\n**Endpoint:** `POST {{host}}/employers`\n\nThis request creates a new employer account in the system. It is intended for use by administrators or staff to register a new employer with a unique username and password. Upon successful creation, the employer will be able to log in and access employer-specific features.\n\n#### Request Body\nSend a raw JSON object in the request body with the following parameters:\n\n```\n{\n  \"username\": \"string\", // Required. The unique username for the employer (e.g., \"rick5\").\n  \"password\": \"string\"  // Required. The password for the employer account (e.g., \"robpass\").\n}\n```\n\n- Both `username` and `password` are required fields.\n- The `username` must be unique and not already registered in the system.\n\n#### Possible Response Status Codes\n- **201 Created**: Employer was successfully created. The response will include a message indicating the employer was created with an assigned ID.\n- **200 OK**: The request was successful, but no new employer was created (rare; check the response message for details).\n- **400 Bad Request**: The request body is missing required fields or contains invalid data (e.g., username already exists, password too short).\n- **403 Forbidden**: The requester does not have permission to create an employer.\n\n#### Example Success Response (201)\n```\n{\n  \"message\": \"Employer created with id 123\"\n}\n```\n\n#### Example Error Response (400)\n```\n{\n  \"error\": \"Username already exists\"\n}\n```\n\n#### Notes\n- Ensure you have the necessary permissions to perform this action.\n- Use the returned employer ID for further operations related to this employer.\n"
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Employer Failure",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Employer creation failed\", function () {\r",
+							"    if (pm.response.code === 400 || pm.response.code === 403) {\r",
+							"        let jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData).to.have.property('error');\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"rick8\",\r\n\t\"password\": \"robpass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/employers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"employers"
+					]
+				},
+				"description": "Creates a new employer account by sending a POST request to the /employers endpoint. The request body must include a JSON object with 'username' and 'password' fields. \n\nPossible error responses include:\n- 400 Bad Request: Invalid input or missing required fields.\n- 403 Forbidden: The action is not allowed.\n\nA test script is included to check for error messages in the response when a 400 or 403 status code is returned."
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Staff Success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Staff created test\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData['message'].includes(\"Staff created with id\")).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"bob32\",\r\n\t\"password\": \"bobpass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/staff",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"staff"
+					]
+				},
+				"description": "Creates a new staff member. Provide a username and password in the request body to register a new staff account."
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Staff Failure",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should return an error (400 or 403)\", function () {\r",
+							"    pm.expect([400, 403]).to.include(pm.response.code);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"bob32\",\r\n\t\"password\": \"bobpass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/staff",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"staff"
+					]
+				},
+				"description": "Creates a new staff user by accepting a JSON payload with 'username' and 'password' fields. Returns an error response with status code 400 (Bad Request) or 403 (Forbidden) if the input is invalid or the operation is not permitted."
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Student Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returned Access Token\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(pm.response.text()).to.include(\"access_token\");",
+							"    pm.environment.set('student_token', jsonData['access_token']) ",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"gabby\",\r\n\t\"password\": \"robpass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/students/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"students",
+						"login"
+					]
+				},
+				"description": "This endpoint is used for student login. Provide a username and password in the request body to authenticate. Upon successful authentication, an access token is returned in the response."
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "193"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"{{vault:json-web-token}}\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Staff Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returned Access Token\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
+							"    pm.environment.set('staff_token', jsonData['access_token']) \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"bob32\",\r\n\t\"password\": \"bobpass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/staff/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"staff",
+						"login"
+					]
+				},
+				"description": "This endpoint allows staff members to log in by providing their username and password in the request body. On successful authentication, an access token is returned in the response. The access token is also stored in the environment variable 'staff_token' for use in subsequent requests."
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "193"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"{{vault:json-web-token}}\"\n}"
+				}
+			]
+		},
+		{
+			"name": "(Staff) Get Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"array\",\r",
+							"  \"items\": [\r",
+							"    {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"id\": { \"type\": \"integer\" },\r",
+							"        \"username\": { \"type\": \"string\" },\r",
+							"       \r",
+							"      },\r",
+							"      \"required\": [\"id\", \"username\"]\r",
+							"    }\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"pm.test('Schema is valid', function() {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "JWT {{staff_token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/staff",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"staff"
+					]
+				},
+				"description": "Retrieves a list of all staff users. Returns an array of staff objects, each containing id and username."
+			},
+			"response": [
+				{
+					"name": "Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"rob\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "(Staff) Get User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"    \"type\": \"object\",\r",
+							"    \"properties\": {\r",
+							"        \"id\": { \"type\": \"integer\" },\r",
+							"        \"username\": { \"type\": \"string\" }\r",
+							"    },\r",
+							"    \"required\": [\"id\", \"username\"]\r",
+							"};\r",
+							"\r",
+							"pm.test('Schema is valid', function() {\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "JWT {{staff_token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/staff/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"staff",
+						"{{id}}"
+					]
+				},
+				"description": "Retrieves details of a staff user by their unique ID. The staff ID must be provided as a URL parameter. Use this endpoint to fetch information about a specific staff member."
+			},
+			"response": [
+				{
+					"name": "Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"rob\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Employer Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returned Access Token\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
+							"    pm.environment.set('employer_token', jsonData['access_token']) \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"username\": \"rick5\",\r\n\t\"password\": \"robpass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/employers/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"employers",
+						"login"
+					]
+				},
+				"description": "This endpoint allows employers to log in by submitting their username and password in the request body. Upon successful authentication, an access token is returned in the response."
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/auth",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "193"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"{{vault:json-web-token}}\"\n}"
+				}
+			]
+		},
+		{
+			"name": "(Employers) Get Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"array\",\r",
+							"  \"items\": [\r",
+							"    {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"id\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"username\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"company\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"id\",\r",
+							"        \"username\",\r",
+							"        \"company\",\r",
+							"      ]\r",
+							"    }\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"pm.test('Schema is valid', function() {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/employers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"employers"
+					]
+				},
+				"description": "Retrieves a list of all employer users. Returns an array of employer objects, each containing id, username, and company information."
+			},
+			"response": [
+				{
+					"name": "Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"rob\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "(Employers) Get User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful get staff - Status test\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful get staff - Data returned test\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"id\");\r",
+							"    pm.expect(jsonData).to.have.property(\"username\");\r",
+							"    pm.expect(jsonData).to.have.property(\"company\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/employers/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"employers",
+						"{{id}}"
+					]
+				},
+				"description": "### (Employers) Get User\n\n**Purpose:**\nThis endpoint retrieves detailed information about a specific employer by their unique identifier.\n\n**Request:**\n- **Method:** GET\n- **URL:** `{{host}}/employers/{{id}}`\n- **Path Variables:**\n  - `id` (required): The unique identifier of the employer whose details are to be fetched.\n\n**Response:**\n- Returns a JSON object containing employer details.\n- Typical response properties include:\n  - `id`: Employer's unique identifier\n  - `username`: Employer's username\n  - `company`: Name of the employer's company\n\n**Notes:**\n- Ensure the `id` path variable is set to a valid employer ID.\n- A successful response returns HTTP status `200 OK`.\n- If the employer is not found, the API may return a `404 Not Found` error.\n\n**Example Usage:**\n```\nGET /employers/12345\n```\n\n**Example Response:**\n```json\n{\n  \"id\": \"12345\",\n  \"username\": \"employer_user\",\n  \"company\": \"Acme Corp\"\n}\n```\n"
+			},
+			"response": [
+				{
+					"name": "Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"rob\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "(Students) Get User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful get student - Status test\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful get student - Data returned test\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"id\");\r",
+							"    pm.expect(jsonData).to.have.property(\"username\");\r",
+							"    pm.expect(jsonData).to.have.property(\"name\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "JWT {{student_token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/students/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"students",
+						"{{id}}"
+					]
+				},
+				"description": "This GET request retrieves detailed information about a student user by their unique ID. It uses the URL variables 'host' for the API base URL and 'id' for the specific student identifier. The expected successful response includes the student's 'id', 'username', and 'name' properties in the JSON payload. This request is part of the Internship API collection."
+			},
+			"response": [
+				{
+					"name": "Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"rob\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "(Students) Get Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"array\",\r",
+							"  \"items\": [\r",
+							"    {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"id\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"username\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"id\",\r",
+							"        \"username\",\r",
+							"      ]\r",
+							"    }\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"pm.test('Schema is valid', function() {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "JWT {{student_token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/students",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"students"
+					]
+				},
+				"description": "Retrieves a list of all student users. Returns an array of student objects, each containing id and username."
+			},
+			"response": [
+				{
+					"name": "Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"rob\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "(User) Identify",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"\tpm.response.to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Identify test\", function () {\r",
+							"\r",
+							"\tlet jsonData = pm.response.json();\r",
+							"\tpm.expect(\r",
+							"\t\tjsonData['message'].includes(\"username\")\r",
+							"\t).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "JWT {{user_token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/identify",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"identify"
+					]
+				},
+				"description": "This endpoint identifies the current user based on the provided authentication token. It returns user-related information, such as the username, allowing clients to verify the identity and details of the authenticated user."
+			},
+			"response": [
+				{
+					"name": "Identify",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/identify",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"identify"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:26:25 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"username: rob, id : 1\"\n}"
+				}
+			]
+		},
+		{
+			"name": "(Employer) Create Internship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"\t pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Internship test\", function () {\r",
+							"\r",
+							"\tlet jsonData = pm.response.json();\r",
+							"\tpm.expect(\r",
+							"\t\tjsonData['message'].includes(\"Internship created\")\r",
+							"\t).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "JWT {{staff_token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"title\": \"senior programmer\",\r\n\t\"description\": \"do coding I guess idk\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/internships",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"internships"
+					]
+				},
+				"description": "**Endpoint:** POST /internships\n\n**Purpose:**\nCreates a new internship listing. This endpoint is intended for employers to add new internship opportunities to the system.\n\n**Request Body Parameters:**\n- `title` (string, required): The title of the internship position (e.g., \"senior programmer\").\n- `description` (string, required): A brief description of the internship role and responsibilities.\n\n**Example Request Body:**\n```json\n{\n  \"title\": \"senior programmer\",\n  \"description\": \"do coding I guess idk\"\n}\n```\n\n**Expected Response:**\n- **Status Code:** 201 Created\n- **Response Body:** JSON object containing a confirmation message, such as:\n  ```json\n  {\n    \"message\": \"Internship created successfully\"\n  }\n  ```\n- The response will include a message confirming that the internship was created.\n\n**Authentication:**\nRequires a valid staff or employer token in the request headers."
+			},
+			"response": [
+				{
+					"name": "Create Listing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"gameId\": 3,\r\n\t\"condition\": \"good\",\r\n\t\"price\": 11.90\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/listings",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"listings"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "35"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 03:41:18 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"listing created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Internship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": { \"type\": \"integer\" },\r",
+							"    \"title\": { \"type\": \"string\" },\r",
+							"    \"description\": { \"type\": \"string\" },\r",
+							"    \"status\": { \"type\": \"string\" },\r",
+							"    \"employer_id\": { \"type\": \"integer\" }\r",
+							"  },\r",
+							"  \"required\": [\"id\", \"title\", \"description\", \"status\", \"employer_id\"]\r",
+							"}\r",
+							"\r",
+							"\r",
+							"pm.test('Schema is valid', function() {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "JWT {{staff_token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"internship_id\": 1\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/internships/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"internships",
+						"{{id}}"
+					]
+				},
+				"description": "Retrieves detailed information about a specific internship by its unique identifier.\n\n**Request URL Parameters:**\n- `host`: The base URL or environment variable for the API server.\n- `id`: The unique identifier of the internship to retrieve. This is a path variable in the endpoint: `/internships/{id}`.\n\n**Request Body:**\n- The request may include a JSON body with an `internship_id` field (integer), though typically for a GET request, parameters are passed in the URL. If required by your API, provide `{ \"internship_id\": <number> }` in the body.\n\n**Response Schema:**\nReturns a JSON object with the following fields:\n- `id` (integer): Unique identifier for the internship.\n- `title` (string): Title of the internship.\n- `description` (string): Description of the internship.\n- `status` (string): Current status of the internship (e.g., Created, Active, Closed).\n- `employer_id` (integer): Unique identifier of the employer offering the internship."
+			},
+			"response": [
+				{
+					"name": "Rent Game",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"listingId\": 3,\r\n\t\"renter\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/rentals",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"rentals"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:15:11 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"rental created with id 3, $11.9 paid by user rob\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get All Internships",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": { \"type\": \"integer\" },\r",
+							"    \"title\": { \"type\": \"string\" },\r",
+							"    \"description\": { \"type\": \"string\" },\r",
+							"    \"status\": { \"type\": \"string\" },\r",
+							"    \"employer_id\": { \"type\": \"integer\" }\r",
+							"  },\r",
+							"  \"required\": [\"id\", \"title\", \"description\", \"status\", \"employer_id\"]\r",
+							"}\r",
+							"\r",
+							"\r",
+							"pm.test('Schema is valid', function() {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/internships/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"internships",
+						"{{id}}"
+					]
+				},
+				"description": "**Purpose:**\nThis GET request retrieves detailed information about a specific internship from the Internship API.\n\n**Endpoint:**\n`GET {{host}}/internships/{{id}}`\n\n**Path Variables:**\n- `host`: The base URL for the Internship API, typically set as an environment variable.\n- `id`: The unique identifier of the internship to retrieve. This must be provided in the path and corresponds to the internship record you want to fetch.\n\n**Response:**\nOn success (HTTP 200), the response returns a JSON object containing the internship's details, including:\n- `id`: Integer. The unique ID of the internship.\n- `title`: String. The title or name of the internship.\n- `description`: String. A description of the internship.\n- `status`: String. The current status of the internship (e.g., open, closed).\n- `employer_id`: Integer. The ID of the employer offering the internship.\n\n**Usage Notes:**\n- Ensure the `id` path variable is set to a valid internship ID.\n- Authentication may be required depending on API configuration.\n- If the internship with the specified `id` does not exist, a 404 Not Found response may be returned."
+			},
+			"response": [
+				{
+					"name": "Get Rentals",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/rentals",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"rentals"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "431"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:23:26 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"listingId\": 1,\n        \"rentalId\": 1,\n        \"rental_date\": \"2022/10/20, 03:42:06\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 2,\n        \"rentalId\": 2,\n        \"rental_date\": \"2022/10/20, 04:14:28\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 3,\n        \"rentalId\": 3,\n        \"rental_date\": \"2022/10/20, 04:15:11\",\n        \"return_date\": \"2022/10/20, 04:22:23\",\n        \"userId\": 1\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "(Employer) Add Shortlist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"\tpm.response.to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Identify test\", function () {\r",
+							"\r",
+							"\tlet jsonData = pm.response.json();\r",
+							"\tpm.expect(\r",
+							"\t\tjsonData['message'].includes(\"shortlisted for internship\")\r",
+							"\t).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"internship_id\": 6,\r\n    \"student_id\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/shortlists",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"shortlists"
+					]
+				},
+				"description": "Adds a student to the shortlist for a specific internship. Provide both the internship_id and student_id in the request body to associate the student with the internship's shortlist."
+			},
+			"response": [
+				{
+					"name": "Get Available Listings",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/listings",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"listings"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "462"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:15:04 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"condition\": \"good\",\n        \"created\": \"2022/10/20, 03:41:18\",\n        \"game\": {\n            \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n            \"genre\": \"Action\",\n            \"id\": 3,\n            \"platform\": \"PlayStation 4\",\n            \"rating\": \"Mature\",\n            \"rawgId\": 3498,\n            \"title\": \"Grand Theft Auto V\"\n        },\n        \"listingId\": 3,\n        \"price\": 11.9,\n        \"status\": \"available\",\n        \"title\": \"Grand Theft Auto V\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "(Employer) Accept Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"\tpm.response.to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Identify test\", function () {\r",
+							"\r",
+							"\tlet jsonData = pm.response.json();\r",
+							"\tpm.expect(\r",
+							"\t\tjsonData['message'].includes(\"Student accepted for internship\")\r",
+							"\t).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/shortlists/{{shortlist_id}}/accept",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"shortlists",
+						"{{shortlist_id}}",
+						"accept"
+					]
+				},
+				"description": "This endpoint allows an employer to accept a student for an internship from a shortlist. It is intended to be used by employers after reviewing shortlisted candidates. The request requires the following variables:\n- `host`: The base URL of the API server.\n- `shortlist_id`: The unique identifier of the shortlist entry for the student to be accepted.\n\nSend a POST request to `{{host}}/shortlists/{{shortlist_id}}/accept` to confirm the student's acceptance for the internship."
+			},
+			"response": [
+				{
+					"name": "Get Available Listings",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/listings",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"listings"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "462"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:15:04 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"condition\": \"good\",\n        \"created\": \"2022/10/20, 03:41:18\",\n        \"game\": {\n            \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n            \"genre\": \"Action\",\n            \"id\": 3,\n            \"platform\": \"PlayStation 4\",\n            \"rating\": \"Mature\",\n            \"rawgId\": 3498,\n            \"title\": \"Grand Theft Auto V\"\n        },\n        \"listingId\": 3,\n        \"price\": 11.9,\n        \"status\": \"available\",\n        \"title\": \"Grand Theft Auto V\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "(Employer) Reject Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"\tpm.response.to.be.ok;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Identify test\", function () {\r",
+							"\r",
+							"\tlet jsonData = pm.response.json();\r",
+							"\tpm.expect(\r",
+							"\t\tjsonData['message'].includes(\"Student rejected for internship\")\r",
+							"\t).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/shortlists/{{shortlist_id}}/reject",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"shortlists",
+						"{{shortlist_id}}",
+						"reject"
+					]
+				},
+				"description": "## (Employer) Reject Student\n\nThis endpoint allows an employer to reject a student from an internship shortlist. It is typically used when an employer decides not to proceed with a candidate who has been shortlisted for an internship position.\n\n### Purpose\nReject a student from a specific internship shortlist. This action is irreversible and will update the status of the student in the shortlist to \"rejected\".\n\n### URL Structure\n```\nPOST {{host}}/shortlists/{{shortlist_id}}/reject\n```\n- `{{host}}`: The base URL for the API (set in your environment variables).\n- `{{shortlist_id}}`: The unique identifier for the shortlist entry. This should be provided as a path variable.\n\n### Request Body\n- **Type:** Raw\n- **Content:** _Empty_ (no body is required for this request)\n\n### Expected Response\n- **Status Code:** `200 OK`\n- **Body:**\n  ```json\n  {\n    \"message\": \"Student rejected for internship.\"\n  }\n  ```\n- The response confirms that the student has been successfully rejected from the shortlist.\n\n### Post-Response Tests\nThis request includes two post-response tests:\n1. **Status test:** Verifies that the response status is successful (`2xx`).\n2. **Identify test:** Checks that the response body contains the message `\"Student rejected for internship\"`.\n\nThese tests help ensure the endpoint is functioning as expected and returning the correct confirmation message."
+			},
+			"response": [
+				{
+					"name": "Get Available Listings",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/listings",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"listings"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "462"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:15:04 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"condition\": \"good\",\n        \"created\": \"2022/10/20, 03:41:18\",\n        \"game\": {\n            \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n            \"genre\": \"Action\",\n            \"id\": 3,\n            \"platform\": \"PlayStation 4\",\n            \"rating\": \"Mature\",\n            \"rawgId\": 3498,\n            \"title\": \"Grand Theft Auto V\"\n        },\n        \"listingId\": 3,\n        \"price\": 11.9,\n        \"status\": \"available\",\n        \"title\": \"Grand Theft Auto V\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "(Employer) Get All Shortlists",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"array\",\r",
+							"  \"items\": {\r",
+							"    \"type\": \"object\",\r",
+							"    \"properties\": {\r",
+							"      \"id\": { \"type\": \"integer\" },\r",
+							"      \"internship_id\": { \"type\": \"integer\" },\r",
+							"      \"student_id\": { \"type\": \"integer\" }\r",
+							"    },\r",
+							"    \"required\": [\"id\", \"internship_id\", \"student_id\"]\r",
+							"  }\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Schema is valid\", function () {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/shortlists",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"shortlists"
+					]
+				},
+				"description": "Retrieves all shortlist entries for internships. Returns an array of shortlist objects, each containing id, internship_id, student_id, and employer_id."
+			},
+			"response": [
+				{
+					"name": "Get Rentals",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/rentals",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"rentals"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "431"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:23:26 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"listingId\": 1,\n        \"rentalId\": 1,\n        \"rental_date\": \"2022/10/20, 03:42:06\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 2,\n        \"rentalId\": 2,\n        \"rental_date\": \"2022/10/20, 04:14:28\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 3,\n        \"rentalId\": 3,\n        \"rental_date\": \"2022/10/20, 04:15:11\",\n        \"return_date\": \"2022/10/20, 04:22:23\",\n        \"userId\": 1\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "(Employer) Get Shortlist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful get shortlist - Data returned test\", function () {\r",
+							"    let jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"id\");\r",
+							"    pm.expect(jsonData).to.have.property(\"internship_id\");\r",
+							"    pm.expect(jsonData).to.have.property(\"student_id\");\r",
+							"    pm.expect(jsonData).to.have.property(\"employer_id\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/shortlists/{{shortlist_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"shortlists",
+						"{{shortlist_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Rentals",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/rentals",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"rentals"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "431"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 04:23:26 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"listingId\": 1,\n        \"rentalId\": 1,\n        \"rental_date\": \"2022/10/20, 03:42:06\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 2,\n        \"rentalId\": 2,\n        \"rental_date\": \"2022/10/20, 04:14:28\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 3,\n        \"rentalId\": 3,\n        \"rental_date\": \"2022/10/20, 04:15:11\",\n        \"return_date\": \"2022/10/20, 04:22:23\",\n        \"userId\": 1\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Student Shortlist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"array\",\r",
+							"  \"items\": {\r",
+							"    \"type\": \"object\",\r",
+							"    \"properties\": {\r",
+							"      \"id\": { \"type\": \"integer\" },\r",
+							"      \"internship_id\": { \"type\": \"integer\" },\r",
+							"    \r",
+							"    },\r",
+							"    \"required\": [\"id\", \"internship_id\"]\r",
+							"  }\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Schema is valid\", function () {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/shortlists/students/{{student_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"shortlists",
+						"students",
+						"{{student_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get All Games",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/games",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"games"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27438"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 03:40:04 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 1,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 2,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 3,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 4,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 5,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 6,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 7,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 8,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 9,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 10,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 11,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 12,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 13,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 14,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 15,\n        \"platform\": \"Linux\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 16,\n        \"platform\": \"macOS\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 17,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 18,\n        \"platform\": \"PC\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 19,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 20,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 21,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 22,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 23,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 24,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 25,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 26,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 27,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 28,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 29,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 30,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 31,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 32,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 33,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 34,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 35,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 36,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 37,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 38,\n        \"platform\": \"macOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 39,\n        \"platform\": \"Linux\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 40,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 41,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 42,\n        \"platform\": \"Android\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 43,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 44,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 45,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 46,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 47,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 48,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 49,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 50,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 51,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 52,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 53,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 54,\n        \"platform\": \"iOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 55,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 56,\n        \"platform\": \"Android\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 57,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 58,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 59,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 60,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 61,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 62,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 63,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 64,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 65,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 66,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 67,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 68,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 69,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 70,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 71,\n        \"platform\": \"Xbox\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 72,\n        \"platform\": \"Android\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 73,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 74,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 75,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 76,\n        \"platform\": \"iOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 77,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 78,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 79,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 80,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 81,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 82,\n        \"platform\": \"Linux\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 83,\n        \"platform\": \"PS Vita\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 84,\n        \"platform\": \"Android\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 85,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 86,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 87,\n        \"platform\": \"iOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 88,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 89,\n        \"platform\": \"macOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 90,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 91,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 92,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 93,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 94,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 95,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 96,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 97,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 98,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 99,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 100,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 101,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 102,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 103,\n        \"platform\": \"Web\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 104,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 105,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 106,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 107,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 108,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 109,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 110,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 111,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Internship Shortlist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"array\",\r",
+							"  \"items\": {\r",
+							"    \"type\": \"object\",\r",
+							"    \"properties\": {\r",
+							"      \"id\": { \"type\": \"integer\" },\r",
+							"      \"student_id\": { \"type\": \"integer\" }\r",
+							"    },\r",
+							"    \"required\": [\"id\", \"student_id\"]\r",
+							"  }\r",
+							"};\r",
+							"\r",
+							"pm.test(\"Schema is valid\", function () {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/shortlists/internships/{{internship_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"shortlists",
+						"internships",
+						"{{internship_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get All Games",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/games",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"games"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27438"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 20 Oct 2022 03:40:04 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.0 Python/3.9.10"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 1,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 2,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 3,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 4,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 5,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 6,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 7,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 8,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 9,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 10,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 11,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 12,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 13,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 14,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 15,\n        \"platform\": \"Linux\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 16,\n        \"platform\": \"macOS\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 17,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 18,\n        \"platform\": \"PC\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 19,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 20,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 21,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 22,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 23,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 24,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 25,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 26,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 27,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 28,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 29,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 30,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 31,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 32,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 33,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 34,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 35,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 36,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 37,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 38,\n        \"platform\": \"macOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 39,\n        \"platform\": \"Linux\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 40,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 41,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 42,\n        \"platform\": \"Android\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 43,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 44,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 45,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 46,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 47,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 48,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 49,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 50,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 51,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 52,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 53,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 54,\n        \"platform\": \"iOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 55,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 56,\n        \"platform\": \"Android\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 57,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 58,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 59,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 60,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 61,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 62,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 63,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 64,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 65,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 66,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 67,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 68,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 69,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 70,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 71,\n        \"platform\": \"Xbox\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 72,\n        \"platform\": \"Android\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 73,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 74,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 75,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 76,\n        \"platform\": \"iOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 77,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 78,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 79,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 80,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 81,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 82,\n        \"platform\": \"Linux\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 83,\n        \"platform\": \"PS Vita\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 84,\n        \"platform\": \"Android\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 85,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 86,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 87,\n        \"platform\": \"iOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 88,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 89,\n        \"platform\": \"macOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 90,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 91,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 92,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 93,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 94,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 95,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 96,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 97,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 98,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 99,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 100,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 101,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 102,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 103,\n        \"platform\": \"Web\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 104,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 105,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 106,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 107,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 108,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 109,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 110,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 111,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    }\n]"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
