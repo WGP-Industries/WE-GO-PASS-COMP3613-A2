@@ -8,12 +8,11 @@ class Shortlist(db.Model):
     
     student_id = db.Column(db.Integer, db.ForeignKey('student.id'), nullable=False)
     internship_id = db.Column(db.Integer, db.ForeignKey('internship.id'), nullable=False)
-    employer_id = db.Column(db.Integer, db.ForeignKey('employer.id'), nullable=False)
 
-    def __init__(self, student_id, internship_id, employer_id):
+    def __init__(self, student_id, internship_id):
         self.student_id = student_id
         self.internship_id = internship_id
-        self.employer_id = employer_id
+    
 
     def __repr__(self):
         return f'<Shortlist Student ID: {self.student_id}, Internship ID: {self.internship_id}>'
