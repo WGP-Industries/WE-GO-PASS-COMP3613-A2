@@ -20,7 +20,8 @@ from App.controllers import (
     list_shortlisted_students,
     add_student_to_shortlist,
     accept_student_from_shortlist,
-    reject_student_from_shortlist
+    reject_student_from_shortlist,
+    get_internship
 )
 
 
@@ -287,6 +288,7 @@ class UsersIntegrationTests(unittest.TestCase):
         assert check is True
         refreshed = get_internship(internship.id)
         assert refreshed.status == 'rejected'
+
 
 
 
