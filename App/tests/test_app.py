@@ -136,29 +136,39 @@ class ShortlistUnitTests(unittest.TestCase):
     def test_list_shortlisted_students(self, mock_shortlist):
         
         mock_shortlist.query.filter_by.return_value.all.return_value = [
-            MagicMock(student_id=1, id=10),
-            MagicMock(student_id=2, id=11)
+            MagicMock(student_id=1, id=10, internship_id=101),
+            MagicMock(student_id=2, id=11, internship_id=102)
         ]
 
-        with patch('App.controllers.shortlist.Student') as mock_student:
+        with patch('App.controllers.shortlist.Student') as mock_student, patch('App.controllers.shortlist.Internship') as mock_internship:
+
             mock_student.query.get.side_effect = [
                 MagicMock(id=1, username='john', name='John Doe'),
                 MagicMock(id=2, username='jane', name='Jane Doe')
             ]
 
-            results = list_shortlisted_students(99)
-        
+            mock_internship.query.get.side_effect = [
+                MagicMock(id=101, title='Internship 1', employer_id=100),
+                MagicMock(id=102, title='Internship 2', employer_id=101)
+            ]
+
+            results = list_shortlisted_students(20)
+
         self.assertEqual(len(results), 2)
         self.assertEqual(results[0]['username'], 'john')
+        self.assertEqual(results[0]['employer_id'], 100)
+        self.assertEqual(results[0]['internship_title'], 'Internship 1')
         self.assertEqual(results[1]['name'], 'Jane Doe')
+        self.assertEqual(results[1]['employer_id'], 101)
+        self.assertEqual(results[1]['internship_title'], 'Internship 2')
 
     @patch('App.controllers.shortlist.db')
     @patch('App.controllers.shortlist.Shortlist')
     def test_add_student_to_shortlist_success(self, mock_shortlist, mock_db):
-        mock_shortlist.return_value = MagicMock(student_id=1, internship_id=2, employer_id=3)
+        mock_shortlist.return_value = MagicMock(student_id=1, internship_id=2)
         mock_db.session.execute.return_value.scalar_one_or_none.return_value = None
 
-        result = add_student_to_shortlist(1, 2, 3)
+        result = add_student_to_shortlist(1, 2)
 
         self.assertIsNotNone(result)
         self.assertEqual(result.student_id, 1)
@@ -168,13 +178,14 @@ class ShortlistUnitTests(unittest.TestCase):
     def test_add_student_to_shortlist_already_exists(self, mock_shortlist, mock_db):
         mock_db.session.execute.return_value.scalar_one_or_none.return_value = True
 
-        result = add_student_to_shortlist(1, 2, 3)
+        result = add_student_to_shortlist(1, 2)
 
         self.assertIsNone(result)
 
     @patch('App.controllers.shortlist.db')
     @patch('App.controllers.shortlist.Internship')
     @patch('App.controllers.shortlist.Shortlist')
+
     def test_accept_student_from_shortlist_success(self, mock_shortlist, mock_internship, mock_db):
         mock_shortlist.query.get.return_value = MagicMock(internship_id=1)
         mock_internship.query.get.return_value = MagicMock(accept=MagicMock())
