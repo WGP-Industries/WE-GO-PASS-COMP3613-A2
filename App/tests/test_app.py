@@ -1,4 +1,5 @@
 import os, tempfile, pytest, logging, unittest
+from unittest.mock import patch, MagicMock
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from App.main import create_app
@@ -10,7 +11,9 @@ from App.controllers import (
     login,
     get_user,
     get_user_by_username,
-    update_user
+    update_user,
+    get_student_shortlisted_positions,
+    list_shortlisted_students
 )
 
 
@@ -41,6 +44,30 @@ class UserUnitTests(unittest.TestCase):
         password = "mypass"
         user = User("bob", password)
         assert user.check_password(password)
+
+class ShortlistUnitTests(unittest.TestCase):
+
+    @patch('App.controllers.shortlist.Shortlist')
+    def test_get_student_shortlisted_postions(self, mock_shortlist):
+
+        mock_shortlist.query.filter_by.return_value.all.return_value =[
+            MagicMock(internship_id=1, id=1),
+            MagicMock(internship_id=2, id=2),
+        ]
+
+        with patch('App.controllers.shortlist.Internship') as mock_internship:
+            mock_internship.query.get.side_effect = [
+                MagicMock(id=1, title = 'internship 1',description = 'Description 1', status = 'pending', employer_id = 100),
+                MagicMock(id=2, title = 'internship 2',description = 'Description 2', status = 'pending', employer_id = 100)
+            ]
+
+            results = get_student_shortlisted_positions(5)
+
+        self.assertEqual(len(results), 2)
+        self.assertEqual(results[0]['title'], 'Internship 1')
+        self.assertEqual(results[1]['internship_id'], 2)
+
+
 
 '''
     Integration Tests
