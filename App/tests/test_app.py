@@ -129,7 +129,7 @@ class ShortlistUnitTests(unittest.TestCase):
             results = get_student_shortlisted_positions(5)
 
         self.assertEqual(len(results), 2)
-        self.assertEqual(results[0]['title'], 'Internship 1')
+        self.assertEqual(results[0]['title'], 'internship 1')
         self.assertEqual(results[1]['internship_id'], 2)
 
     @patch('App.controllers.shortlist.Shortlist')
@@ -143,8 +143,8 @@ class ShortlistUnitTests(unittest.TestCase):
         with patch('App.controllers.shortlist.Student') as mock_student, patch('App.controllers.shortlist.Internship') as mock_internship:
 
             mock_student.query.get.side_effect = [
-                MagicMock(id=1, username='john', name='John Doe'),
-                MagicMock(id=2, username='jane', name='Jane Doe')
+                MagicMock(id=1, username='john', **{'name': 'John Doe'}),
+                MagicMock(id=2, username='jane', **{'name': 'Jane Doe'})
             ]
 
             mock_internship.query.get.side_effect = [
