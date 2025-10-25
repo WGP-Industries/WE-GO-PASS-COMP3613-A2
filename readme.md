@@ -241,4 +241,9 @@ $ flask shorlist student <internship_id>
 ```
 
 
+## Testing 
+```bash
+$ flask test app
+```
+
 
