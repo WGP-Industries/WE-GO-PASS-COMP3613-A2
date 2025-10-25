@@ -12,8 +12,16 @@ from App.controllers import (
     get_user,
     get_user_by_username,
     update_user,
+    create_student,
+    create_staff,
+    create_employer,
+    create_internship,
     get_student_shortlisted_positions,
-    list_shortlisted_students
+    list_shortlisted_students,
+    add_student_to_shortlist,
+    accept_student_from_shortlist,
+    reject_student_from_shortlist,
+    get_internship
 )
 
 
@@ -45,6 +53,63 @@ class UserUnitTests(unittest.TestCase):
         user = User("bob", password)
         assert user.check_password(password)
 
+class StudentUnitTests(unittest.TestCase):
+
+    @patch('App.controllers.student.db')
+    @patch('App.controllers.student.Student')
+    def test_create_student_success(self, mock_student, mock_db):
+        mock_student.return_value = MagicMock(username='stud1')
+        mock_db.session.add.return_value = None
+        mock_db.session.commit.return_value = None
+
+        result = create_student('stud1', 'pass')
+
+        self.assertIsNotNone(result)
+        self.assertEqual(result.username, 'stud1')
+
+class StaffUnitTests(unittest.TestCase):
+
+    @patch('App.controllers.staff.db')
+    @patch('App.controllers.staff.Staff')
+    def test_create_staff_success(self, mock_staff, mock_db):
+        mock_staff.return_value = MagicMock(username='staff1')
+        mock_db.session.add.return_value = None
+        mock_db.session.commit.return_value = None
+
+        result = create_staff('staff1', 'pass')
+
+        self.assertIsNotNone(result)
+        self.assertEqual(result.username, 'staff1')
+
+class EmployerUnitTests(unittest.TestCase):
+
+    @patch('App.controllers.employer.db')
+    @patch('App.controllers.employer.Employer')
+    def test_create_employer_success(self, mock_employer, mock_db):
+        mock_employer.return_value = MagicMock(username='emp1', company='TechCorp')
+        employer = mock_employer(username='emp1', password='123', company='TechCorp')
+        mock_db.session.add.return_value = None
+        mock_db.session.commit.return_value = None
+
+        result = create_employer('emp1', '123', 'TechCorp')
+
+        self.assertIsNotNone(result)
+        self.assertEqual(result.username, 'emp1')
+        self.assertEqual(result.company, 'TechCorp')
+
+class InternshipUnitTests(unittest.TestCase):
+
+    @patch('App.controllers.internship.db')
+    @patch('App.controllers.internship.Internship')
+    def test_create_internship_success(self, mock_internship, mock_db):
+        mock_internship.return_value = MagicMock(title='Intern1', employer_id=1)
+        mock_db.session.execute.return_value.scalar_one_or_none.return_value = None
+
+        result = create_internship('Intern1', 'Test desc', 1)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(result.title, 'Intern1')
+
 class ShortlistUnitTests(unittest.TestCase):
 
     @patch('App.controllers.shortlist.Shortlist')
@@ -64,10 +129,85 @@ class ShortlistUnitTests(unittest.TestCase):
             results = get_student_shortlisted_positions(5)
 
         self.assertEqual(len(results), 2)
-        self.assertEqual(results[0]['title'], 'Internship 1')
+        self.assertEqual(results[0]['title'], 'internship 1')
         self.assertEqual(results[1]['internship_id'], 2)
 
+    @patch('App.controllers.shortlist.Shortlist')
+    def test_list_shortlisted_students(self, mock_shortlist):
+        
+        mock_shortlist.query.filter_by.return_value.all.return_value = [
+            MagicMock(student_id=1, id=10, internship_id=101),
+            MagicMock(student_id=2, id=11, internship_id=102)
+        ]
 
+        with patch('App.controllers.shortlist.Student') as mock_student, patch('App.controllers.shortlist.Internship') as mock_internship:
+
+            mock_student.query.get.side_effect = [
+                MagicMock(id=1, username='john', **{'name': 'John Doe'}),
+                MagicMock(id=2, username='jane', **{'name': 'Jane Doe'})
+            ]
+
+            mock_internship.query.get.side_effect = [
+                MagicMock(id=101, title='Internship 1', employer_id=100),
+                MagicMock(id=102, title='Internship 2', employer_id=101)
+            ]
+
+            results = list_shortlisted_students(20)
+
+        self.assertEqual(len(results), 2)
+        self.assertEqual(results[0]['username'], 'john')
+        self.assertEqual(results[0]['employer_id'], 100)
+        self.assertEqual(results[0]['internship_title'], 'Internship 1')
+        self.assertEqual(results[1]['name'], 'Jane Doe')
+        self.assertEqual(results[1]['employer_id'], 101)
+        self.assertEqual(results[1]['internship_title'], 'Internship 2')
+
+    @patch('App.controllers.shortlist.db')
+    @patch('App.controllers.shortlist.Shortlist')
+    def test_add_student_to_shortlist_success(self, mock_shortlist, mock_db):
+        mock_shortlist.return_value = MagicMock(student_id=1, internship_id=2)
+        mock_db.session.execute.return_value.scalar_one_or_none.return_value = None
+
+        result = add_student_to_shortlist(1, 2)
+
+        self.assertIsNotNone(result)
+        self.assertEqual(result.student_id, 1)
+
+    @patch('App.controllers.shortlist.db')
+    @patch('App.controllers.shortlist.Shortlist')
+    def test_add_student_to_shortlist_already_exists(self, mock_shortlist, mock_db):
+        mock_db.session.execute.return_value.scalar_one_or_none.return_value = True
+
+        result = add_student_to_shortlist(1, 2)
+
+        self.assertIsNone(result)
+
+    @patch('App.controllers.shortlist.db')
+    @patch('App.controllers.shortlist.Internship')
+    @patch('App.controllers.shortlist.Shortlist')
+
+    def test_accept_student_from_shortlist_success(self, mock_shortlist, mock_internship, mock_db):
+        mock_shortlist.query.get.return_value = MagicMock(internship_id=1)
+        mock_internship.query.get.return_value = MagicMock(accept=MagicMock())
+
+        result = accept_student_from_shortlist(1)
+
+        self.assertTrue(result)
+        mock_internship.query.get.return_value.accept.assert_called_once()
+        mock_db.session.commit.assert_called_once()
+
+    @patch('App.controllers.shortlist.db')
+    @patch('App.controllers.shortlist.Internship')
+    @patch('App.controllers.shortlist.Shortlist')
+    def test_reject_student_from_shortlist_success(self, mock_shortlist, mock_internship, mock_db):
+        mock_shortlist.query.get.return_value = MagicMock(internship_id=1)
+        mock_internship.query.get.return_value = MagicMock(reject=MagicMock())
+
+        result = reject_student_from_shortlist(1)
+
+        self.assertTrue(result)
+        mock_internship.query.get.return_value.reject.assert_called_once()
+        mock_db.session.commit.assert_called_once()
 
 '''
     Integration Tests
@@ -159,6 +299,7 @@ class UsersIntegrationTests(unittest.TestCase):
         assert check is True
         refreshed = get_internship(internship.id)
         assert refreshed.status == 'rejected'
+
 
 
 
