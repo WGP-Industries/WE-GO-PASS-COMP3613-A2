@@ -237,6 +237,7 @@ $ flask shortlist reject <shortlist_id>
 
 ## View students shortlisted for an internship
 ```bash
-$ flask shorlist student <student_id>
+$ flask shorlist student <internship_id>
 ```
+
 
