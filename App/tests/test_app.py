@@ -44,7 +44,7 @@ class UserUnitTests(unittest.TestCase):
     
     def test_hashed_password(self):
         password = "mypass"
-        hashed = generate_password_hash(password, method='sha256')
+        hashed = generate_password_hash(password, method='pbkdf2:sha256')
         user = User("bob", password)
         assert user.password != password
 
@@ -142,11 +142,13 @@ class ShortlistUnitTests(unittest.TestCase):
 
         with patch('App.controllers.shortlist.Student') as mock_student, patch('App.controllers.shortlist.Internship') as mock_internship:
 
+            mock_student.query = MagicMock()
             mock_student.query.get.side_effect = [
-                MagicMock(id=1, username='john', **{'name': 'John Doe'}),
-                MagicMock(id=2, username='jane', **{'name': 'Jane Doe'})
+                SimpleNamespace(id=1, username='john', name = 'John Doe'),
+                SimpleNamespace(id=2, username='jane', name ='Jane Doe')
             ]
 
+            mock_internship.query = MagicMock()
             mock_internship.query.get.side_effect = [
                 MagicMock(id=101, title='Internship 1', employer_id=100),
                 MagicMock(id=102, title='Internship 2', employer_id=101)
@@ -224,8 +226,8 @@ def empty_db():
 
 
 def test_authenticate():
-    user = create_user("bob", "bobpass")
-    assert login("bob", "bobpass") != None
+    user = create_user("bob", "bobpass", "student")
+    assert login("bob", "bobpass", "student") != None
 
 class UsersIntegrationTests(unittest.TestCase):
 

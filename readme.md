@@ -121,11 +121,11 @@ $ flask db --help
 Unit and Integration tests are created in the App/test. You can then create commands to run them. Look at the unit test command in wsgi.py for example
 
 ```python
-@test.command("user", help="Run User tests")
+@test.command("app", help="Run App tests")
 @click.argument("type", default="all")
 def user_tests_command(type):
     if type == "unit":
-        sys.exit(pytest.main(["-k", "UserUnitTests"]))
+        sys.exit(pytest.main(["-k", "UserUnitTests or StudentUnitTests or StaffUnitTests or EmployerUnitTests or InternshipUnitTests or ShortlistUnitTests"]))
     elif type == "int":
         sys.exit(pytest.main(["-k", "UserIntegrationTests"]))
     else:
@@ -135,7 +135,7 @@ def user_tests_command(type):
 You can then execute all user tests as follows
 
 ```bash
-$ flask test user
+$ flask test app
 ```
 
 You can also supply "unit" or "int" at the end of the comand to execute only unit or integration tests.
@@ -220,7 +220,7 @@ $ flask internship list
 
 ## Add a student to an internship's shortlist
 ```bash
-$ flask shortlist add <student_id> <internship_id>
+$ flask shortlist add <student_id> <internship_id> <employer_id>
 ```
 
 ## View shortlisted positions for a student:
@@ -232,4 +232,13 @@ $ flask shortlist view <student_id>
 ```bash
 $ flask shortlist accept <shortlist_id>
 
-$ flask shortlist reject <shortlist_id>
+$ flask shortlist reject <shortlist_id> 
+```
+
+## View students shortlisted for an internship
+```bash
+$ flask shorlist student <internship_id>
+```
+
+
+
