@@ -1,6 +1,7 @@
 import os, tempfile, pytest, logging, unittest
 from unittest.mock import patch, MagicMock
 from werkzeug.security import check_password_hash, generate_password_hash
+from types import SimpleNamespace
 
 from App.main import create_app
 from App.database import db, create_db
@@ -166,14 +167,26 @@ class ShortlistUnitTests(unittest.TestCase):
 
     @patch('App.controllers.shortlist.db')
     @patch('App.controllers.shortlist.Shortlist')
-    def test_add_student_to_shortlist_success(self, mock_shortlist, mock_db):
-        mock_shortlist.return_value = MagicMock(student_id=1, internship_id=2)
-        mock_db.session.execute.return_value.scalar_one_or_none.return_value = None
+    @patch('App.controllers.shortlist.Internship')
+    def test_add_student_to_shortlist_success(self, mock_internship, mock_shortlist, mock_db):
+        mock_internship.query.get.return_value = MagicMock(id=2, title='I', employer_id=5)
+
+        mock_shortlist.query.filter_by.return_value.first.return_value = None
+
+        mock_new_shortlist = MagicMock(student_id=1, internship_id=2)
+        mock_shortlist.return_value = mock_new_shortlist
+
+        mock_db.session = MagicMock()
+        mock_db.session.add = MagicMock()
+        mock_db.session.commit = MagicMock()
+        mock_db.session.rollback = MagicMock()
 
         result = add_student_to_shortlist(1, 2)
 
         self.assertIsNotNone(result)
         self.assertEqual(result.student_id, 1)
+
+
 
     @patch('App.controllers.shortlist.db')
     @patch('App.controllers.shortlist.Shortlist')
@@ -226,8 +239,8 @@ def empty_db():
 
 
 def test_authenticate():
-    user = create_user("bob", "bobpass", "student")
-    assert login("bob", "bobpass", "student") != None
+    user = create_user("bob1", "bobpass")
+    assert login("bob1", "bobpass", "user") != None
 
 class UsersIntegrationTests(unittest.TestCase):
 
@@ -237,7 +250,7 @@ class UsersIntegrationTests(unittest.TestCase):
 
     def test_get_all_users_json(self):
         users_json = get_all_users_json()
-        self.assertListEqual([{"id":1, "username":"bob"}, {"id":2, "username":"rick"}], users_json)
+        self.assertListEqual([{"id":1, "username":"bob1"}, {"id":2, "username":"rick"}], users_json)
 
     # Tests data changes in the database
     def test_update_user(self):

@@ -3,7 +3,6 @@ from App.database import db
 
 
 # Get shortlisted internships for a student
-
 def get_student_shortlisted_positions(student_id):
     shortlists = Shortlist.query.filter_by(student_id=student_id).all()
     results = []
@@ -22,25 +21,20 @@ def get_student_shortlisted_positions(student_id):
     return results
 
 
-
 # Get all shortlists
-
 def get_all_shortlists():
     return Shortlist.query.all()
 
 
 # Get a single shortlist
-
 def get_shortlist(shortlist_id):
     return Shortlist.query.get(shortlist_id)
 
 
-# Add student to shortlist
-
 def add_student_to_shortlist(student_id, internship_id):
     internship = Internship.query.get(internship_id)
     if not internship:
-        return None  
+        return None
 
     existing = Shortlist.query.filter_by(
         student_id=student_id,
@@ -48,21 +42,20 @@ def add_student_to_shortlist(student_id, internship_id):
     ).first()
 
     if existing:
-        return None  
+        return None
 
     try:
         new_shortlist = Shortlist(student_id=student_id, internship_id=internship_id)
         db.session.add(new_shortlist)
         db.session.commit()
         return new_shortlist
-    except Exception as e:
-        print("Error adding to shortlist:", e)
+    except Exception:
         db.session.rollback()
         return None
 
 
-# Accept student from shortlist
 
+# Accept student from shortlist
 def accept_student_from_shortlist(shortlist_id):
     shortlist = Shortlist.query.get(shortlist_id)
     if not shortlist:
@@ -78,7 +71,6 @@ def accept_student_from_shortlist(shortlist_id):
 
 
 # Reject student from shortlist
-
 def reject_student_from_shortlist(shortlist_id):
     shortlist = Shortlist.query.get(shortlist_id)
     if not shortlist:
@@ -93,9 +85,7 @@ def reject_student_from_shortlist(shortlist_id):
     return True
 
 
-
 # List students shortlisted for a given internship
-
 def list_shortlisted_students(internship_id):
     shortlists = Shortlist.query.filter_by(internship_id=internship_id).all()
     results = []

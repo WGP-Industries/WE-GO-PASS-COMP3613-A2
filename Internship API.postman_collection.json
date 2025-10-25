@@ -88,13 +88,13 @@
 			},
 			"response": [
 				{
-					"name": "Create User",
+					"name": "Create Student Success",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"raw": "{\r\n\t\"username\": \"gabby\",\r\n\t\"password\": \"robpass\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -102,43 +102,25 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/students",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"api",
-								"users"
+								"students"
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "32"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
 						}
 					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"User created\"\n}"
+					"body": "{\r\n    \"id\": 6,\r\n    \"message\": \"Student gabby created successfully\"\r\n}"
 				}
 			]
 		},
@@ -185,13 +167,13 @@
 			},
 			"response": [
 				{
-					"name": "Create User",
+					"name": "Create Student Failure",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"raw": "{\r\n\t\"username\": \"rick\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -199,43 +181,25 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/students",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"api",
-								"users"
+								"students"
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "32"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
 						}
 					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"User created\"\n}"
+					"body": "{\r\n    \"error\": \"Missing required fields\"\r\n}"
 				}
 			]
 		},
@@ -292,13 +256,13 @@
 			},
 			"response": [
 				{
-					"name": "Create User",
+					"name": "Create Employer Success",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"raw": "{\r\n\t\"username\": \"rick5\",\r\n\t\"password\": \"robpass\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -306,43 +270,25 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/employers",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"api",
-								"users"
+								"employers"
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "32"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
 						}
 					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"User created\"\n}"
+					"body": "{\r\n    \"message\": \"Employer rick5 created with id 6\"\r\n}"
 				}
 			]
 		},
@@ -391,13 +337,13 @@
 			},
 			"response": [
 				{
-					"name": "Create User",
+					"name": "Create Employer Failure",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"raw": "{\r\n\t\"username\": \"rick8\",\r\n\t\"password\": \"robpass\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -405,43 +351,25 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/employers",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"api",
-								"users"
+								"employers"
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "32"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
 						}
 					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"User created\"\n}"
+					"body": "{\r\n    \"message\": \"Employer rick8 created with id 7\"\r\n}"
 				}
 			]
 		},
@@ -493,13 +421,13 @@
 			},
 			"response": [
 				{
-					"name": "Create User",
+					"name": "Create Staff Success",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"raw": "{\r\n\t\"username\": \"bob32\",\r\n\t\"password\": \"bobpass\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -507,43 +435,25 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/staff",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"api",
-								"users"
+								"staff"
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "32"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
 						}
 					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"User created\"\n}"
+					"body": "{\r\n    \"message\": \"Staff created with id: 6, username: bob32\"\r\n}"
 				}
 			]
 		},
@@ -590,13 +500,13 @@
 			},
 			"response": [
 				{
-					"name": "Create User",
+					"name": "Create Staff Failure",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"raw": "{\r\n\t\"username\": \"bob32\",\r\n\t\"password\": \"bobpass\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -604,43 +514,25 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/staff",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"api",
-								"users"
+								"staff"
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "32"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 04:26:54 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
 						}
 					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"User created\"\n}"
+					"body": "{\r\n    \"error\": \"Username already exists\"\r\n}"
 				}
 			]
 		},
@@ -702,13 +594,13 @@
 			},
 			"response": [
 				{
-					"name": "Login",
+					"name": "Student Login",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"raw": "{\r\n\t\"username\": \"gabby\",\r\n\t\"password\": \"robpass\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -716,42 +608,26 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/auth",
+							"raw": "{{host}}/students/login",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"auth"
+								"students",
+								"login"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "193"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 04:26:43 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
 						}
 					],
-					"cookie": [],
-					"body": "{\n    \"access_token\": \"{{vault:json-web-token}}\"\n}"
+					"body": "{\r\n    \"access_token\": \"{{vault:json-web-token}}\"\r\n}"
 				}
 			]
 		},
@@ -813,13 +689,13 @@
 			},
 			"response": [
 				{
-					"name": "Login",
+					"name": "Staff Login",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"username\": \"rob\",\r\n\t\"password\": \"robpass\"\r\n}",
+							"raw": "{\r\n\t\"username\": \"bob32\",\r\n\t\"password\": \"bobpass\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -827,42 +703,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/auth",
+							"raw": "{{host}}/staff/login",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"auth"
+								"staff",
+								"login"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "193"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 04:26:43 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
-						}
-					],
+					"_postman_previewlanguage": "Text",
+					"header": null,
 					"cookie": [],
-					"body": "{\n    \"access_token\": \"{{vault:json-web-token}}\"\n}"
+					"body": null
 				}
 			]
 		},
@@ -990,7 +844,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"rob\"\n    }\n]"
+					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"staff1\"\n    },\n    {\n        \"id\": 2,\n        \"username\": \"staff2\"\n    },\n    {\n        \"id\": 3,\n        \"username\": \"staff3\"\n    },\n    {\n        \"id\": 4,\n        \"username\": \"staff4\"\n    },\n    {\n        \"id\": 5,\n        \"username\": \"staff5\"\n    },\n    {\n        \"id\": 6,\n        \"username\": \"bob32\"\n    }\n]"
 				}
 			]
 		},
@@ -1073,7 +927,7 @@
 			},
 			"response": [
 				{
-					"name": "Get Users",
+					"name": "Get User",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -1337,6 +1191,32 @@
 					],
 					"cookie": [],
 					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"rob\"\n    }\n]"
+				},
+				{
+					"name": "(Employers) Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/employers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"employers"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "[\r\n    {\r\n        \"company\": \"Company Inc\",\r\n        \"id\": 1,\r\n        \"username\": \"employer1\"\r\n    },\r\n    {\r\n        \"company\": \"Business LLC\",\r\n        \"id\": 2,\r\n        \"username\": \"employer2\"\r\n    },\r\n    {\r\n        \"company\": \"Enterprise Ltd\",\r\n        \"id\": 3,\r\n        \"username\": \"employer3\"\r\n    },\r\n    {\r\n        \"company\": \"Startup Co\",\r\n        \"id\": 4,\r\n        \"username\": \"employer4\"\r\n    },\r\n    {\r\n        \"company\": \"Tech Corp\",\r\n        \"id\": 5,\r\n        \"username\": \"employer5\"\r\n    },\r\n    {\r\n        \"company\": \"rick5\",\r\n        \"id\": 6,\r\n        \"username\": \"rick5\"\r\n    },\r\n    {\r\n        \"company\": \"rick8\",\r\n        \"id\": 7,\r\n        \"username\": \"rick8\"\r\n    }\r\n]"
 				}
 			]
 		},
@@ -1386,7 +1266,7 @@
 			},
 			"response": [
 				{
-					"name": "Get Users",
+					"name": "Get User",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -1427,7 +1307,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"rob\"\n    }\n]"
+					"body": "{\n    \"company\": \"Company Inc\",\n    \"id\": 1,\n    \"username\": \"employer1\"\n}"
 				}
 			]
 		},
@@ -1494,7 +1374,7 @@
 			},
 			"response": [
 				{
-					"name": "Get Users",
+					"name": "Get User",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
@@ -1535,7 +1415,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"rob\"\n    }\n]"
+					"body": "{\n    \"id\": 1,\n    \"name\": \"student1\",\n    \"username\": \"student1\"\n}"
 				}
 			]
 		},
@@ -1670,7 +1550,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"rob\"\n    }\n]"
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"student1\",\n        \"username\": \"student1\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"student2\",\n        \"username\": \"student2\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"student3\",\n        \"username\": \"student3\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"student4\",\n        \"username\": \"student4\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"student5\",\n        \"username\": \"student5\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"gabby\",\n        \"username\": \"gabby\"\n    }\n]"
 				}
 			]
 		},
@@ -1850,13 +1730,13 @@
 			},
 			"response": [
 				{
-					"name": "Create Listing",
+					"name": "(Employer) Create Internship",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"gameId\": 3,\r\n\t\"condition\": \"good\",\r\n\t\"price\": 11.90\r\n}",
+							"raw": "{\r\n\t\"title\": \"senior programmer\",\r\n\t\"description\": \"do coding I guess idk\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1864,42 +1744,25 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/listings",
+							"raw": "{{host}}/internships",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"listings"
+								"internships"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "35"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 03:41:18 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
 						}
 					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"listing created\"\n}"
+					"body": "{\r\n    \"message\": \"Internship created: 'senior programmer' with ID 6\"\r\n}"
 				}
 			]
 		},
@@ -1982,17 +1845,17 @@
 						"{{id}}"
 					]
 				},
-				"description": "Retrieves detailed information about a specific internship by its unique identifier.\n\n**Request URL Parameters:**\n- `host`: The base URL or environment variable for the API server.\n- `id`: The unique identifier of the internship to retrieve. This is a path variable in the endpoint: `/internships/{id}`.\n\n**Request Body:**\n- The request may include a JSON body with an `internship_id` field (integer), though typically for a GET request, parameters are passed in the URL. If required by your API, provide `{ \"internship_id\": <number> }` in the body.\n\n**Response Schema:**\nReturns a JSON object with the following fields:\n- `id` (integer): Unique identifier for the internship.\n- `title` (string): Title of the internship.\n- `description` (string): Description of the internship.\n- `status` (string): Current status of the internship (e.g., Created, Active, Closed).\n- `employer_id` (integer): Unique identifier of the employer offering the internship."
+				"description": "Retrieves detailed information about a specific internship by its unique identifier.\n\n**Request URL Parameters:**\n\n- `host`: The base URL or environment variable for the API server.\n    \n- `id`: The unique identifier of the internship to retrieve. This is a path variable in the endpoint: `/internships/{id}`.\n    \n\n**Request Body:**\n\n- The request may include a JSON body with an `internship_id` field (integer), though typically for a GET request, parameters are passed in the URL. If required by your API, provide `{ \"internship_id\": }` in the body.\n    \n\n**Response Schema:**  \nReturns a JSON object with the following fields:\n\n- `id` (integer): Unique identifier for the internship.\n    \n- `title` (string): Title of the internship.\n    \n- `description` (string): Description of the internship.\n    \n- `status` (string): Current status of the internship (e.g., Created, Active, Closed).\n    \n- `employer_id` (integer): Unique identifier of the employer offering the internship."
 			},
 			"response": [
 				{
-					"name": "Rent Game",
+					"name": "Get Internship",
 					"originalRequest": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"listingId\": 3,\r\n\t\"renter\": 1\r\n}\r\n",
+							"raw": "{\r\n\t\"internship_id\": 1\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2000,42 +1863,26 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/rentals",
+							"raw": "{{host}}/internships/{{id}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"rentals"
+								"internships",
+								"{{id}}"
 							]
 						}
 					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "68"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 04:15:11 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
 						}
 					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"rental created with id 3, $11.9 paid by user rob\"\n}"
+					"body": "{\r\n    \"description\": \"Work on developing software solutions.\",\r\n    \"employer_id\": 1,\r\n    \"id\": 1,\r\n    \"status\": \"pending\",\r\n    \"title\": \"Software Engineer Intern\"\r\n}"
 				}
 			]
 		},
@@ -2093,47 +1940,31 @@
 			},
 			"response": [
 				{
-					"name": "Get Rentals",
+					"name": "Get All Internships",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/rentals",
+							"raw": "{{host}}/internships/{{id}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"rentals"
+								"internships",
+								"{{id}}"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "431"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 04:23:26 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
 						}
 					],
-					"cookie": [],
-					"body": "[\n    {\n        \"listingId\": 1,\n        \"rentalId\": 1,\n        \"rental_date\": \"2022/10/20, 03:42:06\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 2,\n        \"rentalId\": 2,\n        \"rental_date\": \"2022/10/20, 04:14:28\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 3,\n        \"rentalId\": 3,\n        \"rental_date\": \"2022/10/20, 04:15:11\",\n        \"return_date\": \"2022/10/20, 04:22:23\",\n        \"userId\": 1\n    }\n]"
+					"body": "{\r\n    \"description\": \"Work on developing software solutions.\",\r\n    \"employer_id\": 1,\r\n    \"id\": 1,\r\n    \"status\": \"pending\",\r\n    \"title\": \"Software Engineer Intern\"\r\n}"
 				}
 			]
 		},
@@ -2187,47 +2018,39 @@
 			},
 			"response": [
 				{
-					"name": "Get Available Listings",
+					"name": "(Employer) Add Shortlist",
 					"originalRequest": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"internship_id\": 6,\r\n    \"student_id\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{host}}/listings",
+							"raw": "{{host}}/shortlists",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"listings"
+								"shortlists"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Length",
-							"value": "462"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 20 Oct 2022 04:15:04 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.0 Python/3.9.10"
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
 						}
 					],
-					"cookie": [],
-					"body": "[\n    {\n        \"condition\": \"good\",\n        \"created\": \"2022/10/20, 03:41:18\",\n        \"game\": {\n            \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n            \"genre\": \"Action\",\n            \"id\": 3,\n            \"platform\": \"PlayStation 4\",\n            \"rating\": \"Mature\",\n            \"rawgId\": 3498,\n            \"title\": \"Grand Theft Auto V\"\n        },\n        \"listingId\": 3,\n        \"price\": 11.9,\n        \"status\": \"available\",\n        \"title\": \"Grand Theft Auto V\"\n    }\n]"
+					"body": "{\r\n    \"message\": \"Student 2 shortlisted for internship 6.\"\r\n}"
 				}
 			]
 		},
@@ -2324,6 +2147,43 @@
 					],
 					"cookie": [],
 					"body": "[\n    {\n        \"condition\": \"good\",\n        \"created\": \"2022/10/20, 03:41:18\",\n        \"game\": {\n            \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n            \"genre\": \"Action\",\n            \"id\": 3,\n            \"platform\": \"PlayStation 4\",\n            \"rating\": \"Mature\",\n            \"rawgId\": 3498,\n            \"title\": \"Grand Theft Auto V\"\n        },\n        \"listingId\": 3,\n        \"price\": 11.9,\n        \"status\": \"available\",\n        \"title\": \"Grand Theft Auto V\"\n    }\n]"
+				},
+				{
+					"name": "(Employer) Accept Student",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/shortlists/{{shortlist_id}}/accept",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shortlists",
+								"{{shortlist_id}}",
+								"accept"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"message\": \"Student accepted for internship.\"\r\n}"
 				}
 			]
 		},
@@ -2420,6 +2280,43 @@
 					],
 					"cookie": [],
 					"body": "[\n    {\n        \"condition\": \"good\",\n        \"created\": \"2022/10/20, 03:41:18\",\n        \"game\": {\n            \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n            \"genre\": \"Action\",\n            \"id\": 3,\n            \"platform\": \"PlayStation 4\",\n            \"rating\": \"Mature\",\n            \"rawgId\": 3498,\n            \"title\": \"Grand Theft Auto V\"\n        },\n        \"listingId\": 3,\n        \"price\": 11.9,\n        \"status\": \"available\",\n        \"title\": \"Grand Theft Auto V\"\n    }\n]"
+				},
+				{
+					"name": "(Employer) Reject Student",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/shortlists/{{shortlist_id}}/reject",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shortlists",
+								"{{shortlist_id}}",
+								"reject"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"message\": \"Student rejected for internship.\"\r\n}"
 				}
 			]
 		},
@@ -2518,6 +2415,32 @@
 					],
 					"cookie": [],
 					"body": "[\n    {\n        \"listingId\": 1,\n        \"rentalId\": 1,\n        \"rental_date\": \"2022/10/20, 03:42:06\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 2,\n        \"rentalId\": 2,\n        \"rental_date\": \"2022/10/20, 04:14:28\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 3,\n        \"rentalId\": 3,\n        \"rental_date\": \"2022/10/20, 04:15:11\",\n        \"return_date\": \"2022/10/20, 04:22:23\",\n        \"userId\": 1\n    }\n]"
+				},
+				{
+					"name": "(Employer) Get All Shortlists",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/shortlists",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shortlists"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "[\r\n    {\r\n        \"employer_id\": 6,\r\n        \"id\": 1,\r\n        \"internship_id\": 6,\r\n        \"student_id\": 2\r\n    }\r\n]"
 				}
 			]
 		},
@@ -2609,6 +2532,33 @@
 					],
 					"cookie": [],
 					"body": "[\n    {\n        \"listingId\": 1,\n        \"rentalId\": 1,\n        \"rental_date\": \"2022/10/20, 03:42:06\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 2,\n        \"rentalId\": 2,\n        \"rental_date\": \"2022/10/20, 04:14:28\",\n        \"return_date\": null,\n        \"userId\": 1\n    },\n    {\n        \"listingId\": 3,\n        \"rentalId\": 3,\n        \"rental_date\": \"2022/10/20, 04:15:11\",\n        \"return_date\": \"2022/10/20, 04:22:23\",\n        \"userId\": 1\n    }\n]"
+				},
+				{
+					"name": "(Employer) Get Shortlist",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/shortlists/{{shortlist_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shortlists",
+								"{{shortlist_id}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\r\n    \"employer_id\": 6,\r\n    \"id\": 1,\r\n    \"internship_id\": 6,\r\n    \"student_id\": 2\r\n}"
 				}
 			]
 		},
@@ -2705,6 +2655,34 @@
 					],
 					"cookie": [],
 					"body": "[\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 1,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 2,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 3,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 4,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 5,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 6,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 7,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 8,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 9,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 10,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 11,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 12,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 13,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 14,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 15,\n        \"platform\": \"Linux\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 16,\n        \"platform\": \"macOS\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 17,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 18,\n        \"platform\": \"PC\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 19,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 20,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 21,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 22,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 23,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 24,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 25,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 26,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 27,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 28,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 29,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 30,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 31,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 32,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 33,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 34,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 35,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 36,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 37,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 38,\n        \"platform\": \"macOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 39,\n        \"platform\": \"Linux\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 40,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 41,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 42,\n        \"platform\": \"Android\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 43,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 44,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 45,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 46,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 47,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 48,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 49,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 50,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 51,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 52,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 53,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 54,\n        \"platform\": \"iOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 55,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 56,\n        \"platform\": \"Android\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 57,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 58,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 59,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 60,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 61,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 62,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 63,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 64,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 65,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 66,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 67,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 68,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 69,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 70,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 71,\n        \"platform\": \"Xbox\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 72,\n        \"platform\": \"Android\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 73,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 74,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 75,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 76,\n        \"platform\": \"iOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 77,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 78,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 79,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 80,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 81,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 82,\n        \"platform\": \"Linux\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 83,\n        \"platform\": \"PS Vita\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 84,\n        \"platform\": \"Android\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 85,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 86,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 87,\n        \"platform\": \"iOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 88,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 89,\n        \"platform\": \"macOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 90,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 91,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 92,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 93,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 94,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 95,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 96,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 97,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 98,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 99,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 100,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 101,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 102,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 103,\n        \"platform\": \"Web\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 104,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 105,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 106,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 107,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 108,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 109,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 110,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 111,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    }\n]"
+				},
+				{
+					"name": "Get Student Shortlist",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/shortlists/students/{{student_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shortlists",
+								"students",
+								"{{student_id}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "[\r\n    {\r\n        \"description\": \"do coding I guess idk\",\r\n        \"employer_id\": 6,\r\n        \"id\": 1,\r\n        \"internship_id\": 6,\r\n        \"title\": \"senior programmer\"\r\n    }\r\n]"
 				}
 			]
 		},
@@ -2799,6 +2777,34 @@
 					],
 					"cookie": [],
 					"body": "[\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 1,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 2,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 3,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 4,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 5,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 6,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 7,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3498,\n        \"title\": \"Grand Theft Auto V\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 8,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 9,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 10,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 11,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 12,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 13,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3328,\n        \"title\": \"The Witcher 3: Wild Hunt\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 14,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 15,\n        \"platform\": \"Linux\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 16,\n        \"platform\": \"macOS\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 17,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 18,\n        \"platform\": \"PC\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg\",\n        \"genre\": \"Shooter\",\n        \"id\": 19,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Everyone 10+\",\n        \"rawgId\": 4200,\n        \"title\": \"Portal 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 20,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 21,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 22,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 23,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 24,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/021/021c4e21a1824d2526f925eff6324653.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 25,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5286,\n        \"title\": \"Tomb Raider (2013)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 26,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 27,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 28,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4291,\n        \"title\": \"Counter-Strike: Global Offensive\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 29,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 30,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 31,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 32,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 5679,\n        \"title\": \"The Elder Scrolls V: Skyrim\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 33,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 34,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 35,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 36,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 12020,\n        \"title\": \"Left 4 Dead 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 37,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 38,\n        \"platform\": \"macOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 39,\n        \"platform\": \"Linux\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 40,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 41,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/7fa/7fa0b586293c5861ee32490e953a4996.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 42,\n        \"platform\": \"Android\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 13536,\n        \"title\": \"Portal\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 43,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 44,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 45,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 46,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 47,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 48,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/fc1/fc1307a2774506b5bd65d7e8424664a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 49,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4062,\n        \"title\": \"BioShock Infinite\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 50,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 51,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 52,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 53,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 54,\n        \"platform\": \"iOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 55,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 56,\n        \"platform\": \"Android\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 57,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 58,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3439,\n        \"title\": \"Life is Strange\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 59,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 60,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 61,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 62,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 63,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 64,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 802,\n        \"title\": \"Borderlands 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 65,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 66,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 67,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 28,\n        \"title\": \"Red Dead Redemption 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 68,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 69,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 70,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 71,\n        \"platform\": \"Xbox\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 72,\n        \"platform\": \"Android\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 73,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 13537,\n        \"title\": \"Half-Life 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 74,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 75,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 76,\n        \"platform\": \"iOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 77,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 78,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 79,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 80,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 81,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 4286,\n        \"title\": \"BioShock\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 82,\n        \"platform\": \"Linux\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 83,\n        \"platform\": \"PS Vita\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 84,\n        \"platform\": \"Android\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 85,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 86,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 87,\n        \"platform\": \"iOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 88,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 89,\n        \"platform\": \"macOS\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 90,\n        \"platform\": \"Xbox 360\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 91,\n        \"platform\": \"PlayStation 3\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg\",\n        \"genre\": \"Adventure\",\n        \"id\": 92,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 1030,\n        \"title\": \"Limbo\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 93,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 94,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 95,\n        \"platform\": \"Nintendo Switch\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 96,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 2454,\n        \"title\": \"DOOM (2016)\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 97,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 98,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 99,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 3070,\n        \"title\": \"Fallout 4\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 100,\n        \"platform\": \"Xbox One\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 101,\n        \"platform\": \"PC\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 102,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 103,\n        \"platform\": \"Web\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 104,\n        \"platform\": \"Xbox Series S/X\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 105,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Teen\",\n        \"rawgId\": 32,\n        \"title\": \"Destiny 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 106,\n        \"platform\": \"PlayStation 5\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 107,\n        \"platform\": \"PlayStation 4\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 108,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 58175,\n        \"title\": \"God of War\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 109,\n        \"platform\": \"PC\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 110,\n        \"platform\": \"macOS\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    },\n    {\n        \"boxart\": \"https://media.rawg.io/media/games/46d/46d98e6910fbc0706e2948a7cc9b10c5.jpg\",\n        \"genre\": \"Action\",\n        \"id\": 111,\n        \"platform\": \"Linux\",\n        \"rating\": \"Mature\",\n        \"rawgId\": 11859,\n        \"title\": \"Team Fortress 2\"\n    }\n]"
+				},
+				{
+					"name": "Get Internship Shortlist",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/shortlists/internships/{{internship_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shortlists",
+								"internships",
+								"{{internship_id}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "[\r\n    {\r\n        \"employer_id\": 6,\r\n        \"id\": 1,\r\n        \"name\": \"student2\",\r\n        \"student_id\": 2,\r\n        \"username\": \"student2\"\r\n    }\r\n]"
 				}
 			]
 		}

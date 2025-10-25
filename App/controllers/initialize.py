@@ -10,6 +10,7 @@ def initialize():
     db.drop_all()
     db.create_all()
     create_user('bob', 'bobpass')
+    create_user('abby', 'bobpass')
     create_staff('staff1', 'staffpass')
     create_staff('staff2', 'staffpass2')
     create_staff('staff3', 'staffpass3')

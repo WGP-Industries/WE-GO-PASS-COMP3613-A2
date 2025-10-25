@@ -3,6 +3,13 @@ from App.models import User, Student, Employer, Staff
 from App.database import db
 
 def login(username, password, user_type):
+     
+    if user_type == 'user':
+        result = db.session.execute(db.select(User).filter_by(username=username))
+        user = result.scalar_one_or_none()
+        if user and user.check_password(password):
+            return create_access_token(identity=str(user.id))
+    
     try:
         model_map = {
             'student': Student,
