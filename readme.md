@@ -220,7 +220,7 @@ $ flask internship list
 
 ## Add a student to an internship's shortlist
 ```bash
-$ flask shortlist add <student_id> <internship_id>
+$ flask shortlist add <student_id> <internship_id> <employer_id>
 ```
 
 ## View shortlisted positions for a student:
@@ -232,4 +232,11 @@ $ flask shortlist view <student_id>
 ```bash
 $ flask shortlist accept <shortlist_id>
 
-$ flask shortlist reject <shortlist_id>
+$ flask shortlist reject <shortlist_id> 
+```
+
+## View students shortlisted for an internship
+```bash
+$ flask shorlist student <student_id>
+```
+
